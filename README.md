@@ -1,0 +1,2 @@
+# ExaminationCountDown
+一个可以放到学校电脑上的高考倒计时网页
