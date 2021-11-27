@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>高考倒计时</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            background-image: url("main.jpg");
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: 100% 100%;
+        }
+
+        .Main_Count {
+            text-align: center;
+            transform: translateX(50px);
+        }
+
+        .ExamCountDown {
+            font-size: 90px;
+            padding: 0;
+            display: none;
+        }
+
+        .TimeNow {
+            display: none;
+            text-align: center;
+            font-size: 45px;
+            margin: 15px;
+            float: right;
+        }
+    </style>
+
+    <script src="jquery-3.6.0.js"></script>
+    <script>
+        $(document).ready(function () {
+            var ExamDay = "2022-6-7"  //输入考试日期：格式为xxxx-xx-xx
+
+
+            var Today = Date.parse(new Date()) / 1000;
+            var ExamDay = Date.parse(new Date(ExamDay)) / 1000;
+            var Distance = ExamDay - Today
+            $("#Days").text(Math.ceil(Distance / 86400) + "天")
+
+            $(".ExamCountDown").fadeIn("slow")
+
+            $("#Days").css({
+                "color": "red",
+                "font-weight": "bold"
+            })
+
+            setInterval(function () {
+                var day = new Date()
+                var monthNow = day.getMonth() + 1
+
+                $("#Date").text(day.getFullYear() + "年" + monthNow + "月" + day.getDate() + "日")
+                var hours = day.getHours()
+                if (hours < 10) {
+                    hours = "0" + hours
+                }
+                var minutes = day.getMinutes()
+                if (minutes < 10) {
+                    minutes = "0" + minutes
+                }
+                var seconds = day.getSeconds()
+                if (seconds < 10) {
+                    seconds = "0" + seconds
+                }
+                $("#Time").text(hours + "：" + minutes + "：" + seconds)
+            }, 1000)
+            $(".TimeNow,span").fadeIn()
+
+        })
+    </script>
+</head>
+<div class="TimeNow">
+    <span><b>现在的时间是：</b></span><br>
+    <span id="Date"></span><br><span id="Time"></span>
+</div>
+
+<h1 class="Main_Count">
+    <span class="ExamCountDown">距离高考还剩下：</span>
+    <span class="ExamCountDown" id="Days"></span>
+</h1>
+
+<body>
+
+</body>
+
+</html>
