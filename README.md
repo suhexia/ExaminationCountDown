@@ -1,2 +1,3 @@
-# ExaminationCountDown
-一个可以放到学校电脑上的高考倒计时网页
+# 高考倒计时网页
+如需使用作为壁纸，可以配合wallpaper engine进行使用
+（当然有佬能自己写代码那另外说）））
