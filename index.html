@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 
 <head>
@@ -8,6 +8,8 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
+        html,body{height: 100%;width: 100%;padding: 0px;margin: 0px;}
+
         body {
             background-image: url("main.jpg");
             background-repeat: no-repeat;
@@ -17,24 +19,33 @@
 
         .Main_Count {
             text-align: center;
-            transform: translateX(50px);
+            width: 80%;
+            transform: translateX(80px);
+            font-family: STXingkai;
         }
 
         .ExamCountDown {
-            font-size: 90px;
-            padding: 0;
+            font-size: 100px;
+            padding: 5px;
             display: none;
         }
 
         .TimeNow {
+            position: relative;
+            padding: 10px;
+            float: right;
             display: none;
             text-align: center;
-            font-size: 45px;
-            margin: 15px;
+            font-size: 60px;
             float: right;
+            font-family: STKaiti;
         }
+
     </style>
 
+    <script>
+        window.ononline = function () { window.location.reload(); }
+    </script>
     <script src="jquery-3.6.0.js"></script>
     <script>
         $(document).ready(function () {
@@ -56,8 +67,10 @@
             setInterval(function () {
                 var day = new Date()
                 var monthNow = day.getMonth() + 1
-
+                var WeekDay = ["日", "一", "二", "三", "四", "五", "六"]
+                var DayNow = WeekDay[day.getDay()]
                 $("#Date").text(day.getFullYear() + "年" + monthNow + "月" + day.getDate() + "日")
+                $("#weekday").text("星期" + DayNow)
                 var hours = day.getHours()
                 if (hours < 10) {
                     hours = "0" + hours
@@ -71,24 +84,26 @@
                     seconds = "0" + seconds
                 }
                 $("#Time").text(hours + "：" + minutes + "：" + seconds)
-            }, 1000)
+            }, 500)
             $(".TimeNow,span").fadeIn()
 
         })
     </script>
 </head>
-<div class="TimeNow">
-    <span><b>现在的时间是：</b></span><br>
-    <span id="Date"></span><br><span id="Time"></span>
-</div>
 
-<h1 class="Main_Count">
-    <span class="ExamCountDown">距离高考还剩下：</span>
-    <span class="ExamCountDown" id="Days"></span>
-</h1>
 
 <body>
-
+        <div class="TimeNow">
+            <span><b>现在的时间是：</b></span><br>
+            <span id="Date"></span>
+            <br><span id="weekday"></span>
+            <br><span id="Time"></span>
+        </div>
+    
+        <div class="Main_Count">
+            <b><span class="ExamCountDown">距离高考还剩下：</span></b>
+            <span class="ExamCountDown" id="Days"></span>
+        </div>
 </body>
 
 </html>
